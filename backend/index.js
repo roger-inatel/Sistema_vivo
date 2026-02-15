@@ -8,6 +8,7 @@ dotenv.config();
 
 const app = express(); // 1º: Criamos o app (Movi da linha 10 para cá)
 const prisma = new PrismaClient();
+const PORT = process.env.PORT || 3000;
 
 app.use(cors()); // 2º: Agora sim podemos usar o cors no app
 app.use(express.json()); // 3º: E o parser de JSON
@@ -71,6 +72,7 @@ app.put('/users/:id', async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('🚀 Servidor rodando em http://localhost:3000');
+app.listen(PORT, () => {
+  const baseUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+  console.log(`🚀 Servidor rodando em ${baseUrl}`);
 });
