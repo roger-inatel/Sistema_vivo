@@ -10,7 +10,11 @@ const app = express(); // 1º: Criamos o app (Movi da linha 10 para cá)
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors()); // 2º: Agora sim podemos usar o cors no app
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'https://sistema-vivo-5l4z.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+})); // 2º: Agora sim podemos usar o cors no app
 app.use(express.json()); // 3º: E o parser de JSON
 
 app.get('/', (req, res) => {
