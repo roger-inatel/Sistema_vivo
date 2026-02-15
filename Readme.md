@@ -77,5 +77,3 @@ npm install
 npm run dev
 ```
 
-### **4. Variáveis de Ambiente (opcional no front)**
-Se o frontend consome uma URL da API, considere criar um arquivo `.env` em `frontend/` com a variável (exemplo `VITE_API_URL`).

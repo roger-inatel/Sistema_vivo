@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 3000;
 app.use(cors()); // 2º: Agora sim podemos usar o cors no app
 app.use(express.json()); // 3º: E o parser de JSON
 
+app.get('/', (req, res) => {
+  res.send('API online');
+});
+
 // Esquema de validação
 const userSchema = z.object({
   name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
