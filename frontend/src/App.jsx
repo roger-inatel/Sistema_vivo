@@ -41,6 +41,11 @@ function App() {
       return
     }
 
+    if (!formData.email || !isValidEmail(formData.email)) {
+      showNotification('Por favor, insira um email válido', 'error')
+      return
+    }
+
     try {
       if (editingId) {
         await axios.put(`${API_URL}/${editingId}`, formData)
@@ -57,6 +62,11 @@ function App() {
       const errorMsg = err.response?.data?.errors?.join(', ') || 'Erro ao salvar usuário'
       showNotification(errorMsg, 'error')
     }
+  }
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
   }
 
   const handleEdit = (user) => {
